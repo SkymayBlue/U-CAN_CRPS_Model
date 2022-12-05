@@ -53,7 +53,7 @@ class Predictions():
         samples_label = {}
         for sample in predictions:
             sample = list(sample)
-            if max(sample) >= 0.5:  # 最终的结果超过0.5，认为可以判定类型
+            if max(sample) >= 0.5:  # proba >0.5
                 sample_label = REVER_CLUSTER_NAME[sample.index(max(sample))]
                 samples_label[sampleanmes[i]] = sample_label
             else:
@@ -71,7 +71,7 @@ class Predictions():
         # else:
         writer = pd.ExcelWriter(predict_resf, mode='w')
         resdf.to_excel(writer, sheet_name=database_name + "_predict")
-        count_res.to_excel(writer, sheet_name=database_name + "_Counter")
+        # count_res.to_excel(writer, sheet_name=database_name + "_Counter")
         writer.close()
         self.summary = count_res
         self.resf = predict_resf

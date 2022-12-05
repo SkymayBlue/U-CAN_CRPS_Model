@@ -2,7 +2,10 @@ import os
 import pandas as pd
 import numpy as np
 import random
-import matplotlib.pyplot as plt
+try:
+    import matplotlib.pyplot as plt
+except ModuleNotFoundError:
+    print("matplotlib not found!")
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler
 from sklearn.model_selection import train_test_split
 from tensorflow.keras import utils as np_utils
