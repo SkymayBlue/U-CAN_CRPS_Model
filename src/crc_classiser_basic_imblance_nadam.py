@@ -15,7 +15,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Dense, Flatten, Activation, BatchNormalization
 from tensorflow.keras.layers import Conv1D, MaxPooling1D, AveragePooling1D
 from tensorflow.keras.initializers import glorot_normal, lecun_normal
-from crc_classiser_utils import recall_m, precision_m, f1score_m, f2score_m
+from src.crc_classiser_utils import recall_m, precision_m, f1score_m, f2score_m
 
 
 # https://viso.ai/deep-learning/resnet-residual-neural-network/
