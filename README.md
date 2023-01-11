@@ -29,13 +29,13 @@ After using Seurat to identify stable clusters of all CRC samples, these samples
 
 ### Download zip
 ```bash
-wget https://github.com/SkymayBlue/UCAN_CRPS_Model/archive/master.zip
-unzip UCAN_CRPS_Model-master.zip
+wget https://github.com/SkymayBlue/U-CAN_CRPS_Model/archive/master.zip
+unzip U-CAN_CRPS_Model-master.zip
 ```
 or
 ### Clone repository
 ```bash
-git clone https://github.com/SkymayBlue/UCAN_CRPS_Model.git
+git clone https://github.com/SkymayBlue/U-CAN_CRPS_Model.git
 ```
 
 ---
