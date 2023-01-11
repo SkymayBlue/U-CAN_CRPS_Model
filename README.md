@@ -3,7 +3,7 @@
 ![tensorflow](https://img.shields.io/badge/tensorflow%20tested-2.9.x%20-blue)
 ![version](https://img.shields.io/badge/version-v.1.0.0-blue)
 
-U-CAN_CRPS_Model is written in the Python3 programming language. We used ResNet50 and Tensorflow-2.3 to train a classifier based on U-CAN's colorectal pathway profile. This repo can be used for CRPS (Colorectal Prognostic Subgroups) category prediction.
+U-CAN CRPS Model is written in the Python3 programming language. We used ResNet50 and Tensorflow-2.3 to train a classifier based on U-CAN's colorectal pathway profile. This repo can be used for CRPS (Colorectal Prognostic Subgroups) category prediction.
 
 
 ---
