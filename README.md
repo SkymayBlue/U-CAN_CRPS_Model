@@ -1,15 +1,16 @@
-# UCAN CRPS Model
+# U-CAN CRPS Model
 ![python](https://img.shields.io/badge/Python%20tested-3.9.x%20-blue)
 ![tensorflow](https://img.shields.io/badge/tensorflow%20tested-2.9.x%20-blue)
 ![version](https://img.shields.io/badge/version-v.1.0.0-blue)
 
-UCAN_CRPS_Model is written in the Python3 programming language. We use ResNet50 and Tensorflow-2.3 to trainied a classifier on UCAN's colorectal pathway profile. This repo used for predict CRPS (Colorectal Prognostic Subgroups) catrgory.
+U-CAN CRPS Model is written in the Python3 programming language. We use ResNet50 and Tensorflow-2.3 to trainied a classifier on U-CAN's colorectal RNAseq. This repo used for predict CRPS (Colorectal Prognostic Subgroups) catrgory.
 
 
 ---
 
 # _Documentation_
 
+- [Background](#Background)
 - [Installation](#installation)
   - [Download zip](#Download-zip)
   - [Clone repository](#Clone-repository)
@@ -18,17 +19,19 @@ UCAN_CRPS_Model is written in the Python3 programming language. We use ResNet50 
 - [Viewing the results](#viewing-the-results)
 
 ---
+## Background
+After using Seurat to identify stable clusters of all CRC samples, these samples are from the Uppsala-Umeå Comprehensive Cancer Consortium (U-CAN) biobank collections (Uppsala Biobank and Biobanken Norr).To validate the CRPS de novo classification, we built a classifier based on the deep residual learning framework.
 ## Installation
 
 ### Download zip
 ```bash
-wget https://github.com/SkymayBlue/UCAN_CRPS_Model/archive/master.zip
-unzip UCAN_CRPS_Model-master.zip
+wget https://github.com/SkymayBlue/U-CAN_CRPS_Model/archive/master.zip
+unzip U-CAN_CRPS_Model-master.zip
 ```
 or
 ### Clone repository
 ```bash
-git clone https://github.com/SkymayBlue/UCAN_CRPS_Model.git
+git clone https://github.com/SkymayBlue/U-CAN_CRPS_Model.git
 ```
 
 ---
