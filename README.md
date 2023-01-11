@@ -21,7 +21,8 @@ U-CAN CRPS Model is written in the Python3 programming language. We used ResNet5
 ---
 
 ## Background
-After using Seurat to identify stable clusters of all CRC samples, these samples are from the Uppsala-Umeå Comprehensive Cancer Consortium (U-CAN) biobank collections (Uppsala Biobank and Biobanken Norr).To validate the CRPS de novo classification, we built a classifier based on the deep residual learning framework.
+After using Seurat to identify 5 stable Colorectal Prognostic Subgroups (CRPS) from all Uppsala-Umeå Comprehensive Cancer Consortium (U-CAN) CRC samples, we built a classifier based on the deep residual learning framework to validate the CRPS de novo classifications.
+This model runs with ssGSEA data generated in a matrix format and allows classification into 5 CRPSs as well as normal samples. Samples with class probabilities less than 0.5 will be categorized as NA. Potential users are suggested to first run with“Example data" to learn the running environment.
 
 ---
 
