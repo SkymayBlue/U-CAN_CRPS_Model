@@ -50,7 +50,7 @@ python3 -m pip install -r requirements.txt
 ---
 
 # Run
-Run main.py will open the browser with the url http://127.0.0.1:8080/, you need to click the button "Try it out" in POST, then you can upload and perform CRPS prediction on the csv file which is in testdata directory, and click "Execute" to test whether your installation is corrected or not. 
+Run main.py will open the browser with the url http://127.0.0.1:8000/, you need to click the button "Try it out" in POST, then you can upload and perform CRPS prediction on the csv file which is in testdata directory, and click "Execute" to test whether your installation is corrected or not. 
 ```bash
 python3 main.py
 ```
