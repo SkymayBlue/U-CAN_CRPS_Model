@@ -48,18 +48,18 @@ A typical user can install the libraries using the following command:
 ``` bash
 python3 -m pip install -r requirements.txt
 ```
-if you want to run with exoression matrix, you also need install rpy2 and some R packages in `requestment_r.txt`
+If you want to run with expression matrix, you also need to install rpy2 and the R packages mentioned in`requestment_r.txt`
 
 ---
 
 # Run
-Run server.py will open the browser with the url http://127.0.0.1:8080/docs, you will see the web.![web](img/server_main.png)You can select inpuexpresson matrix or enrichment score matrix calclated with  "GSVA"  by yourself, then you can upload and perform CRPS prediction on the csv file which is in testdata directory, and click "Execute" to test whether your installation is corrected or not. 
+Run server.py will open the browser with the url http://127.0.0.1:8080/docs, you will see the web.![web](img/server_main.png)You may choose to input expresson matrix or enrichment score matrix calculated with "GSVA" by yourself, then you can upload and perform CRPS prediction on the csv file, which is in test data directory, and click "Execute" to test whether your installation is corrected or not.
 ```bash
 python3 server.py
 ```
 If you succeed, you will see a response like this.![response](img/img_2.png)
-You can download example file by clicking "download example" to check the data format, and prepare your local data to run this model. But please note that maximun sample size for input data is 100 and will take a long time to response.
-for more than 100 samples, the best way is to run gsva to get enrichment score first:
+You can download example file by clicking "download example" to check the data format, and prepare your local data to run this model. But please note that maximun size for input data is 200M and this will take the program a long time to response.
+for more than 200M, the best way is to run gsva to get enrichment score first:
 ``` bash
 Rscript ./src/run_gsva.R -i expression_matrix.csv.gz
 
