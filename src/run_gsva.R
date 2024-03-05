@@ -1,6 +1,7 @@
 rm(list=ls())
 set.seed(46)
 
+
 get_ssgsea<-function(inputf, resultf, msigdbf){
   library("GSVA")
   library("data.table")
@@ -29,7 +30,6 @@ if (is.null(opt$input.file)){
 }
 
 
-
 if (file.exists(paste0(getwd(), "/features/msigdb.v7.4.symbols.gmt.gz"))){
   msigdbf <- paste0(getwd(), "/features/msigdb.v7.4.symbols.gmt.gz")
 }else if (file.exists("../features/msigdb.v7.4.symbols.gmt.gz")){
@@ -42,7 +42,5 @@ if (file.exists(paste0(getwd(), "/features/msigdb.v7.4.symbols.gmt.gz"))){
 resultf <- gsub(".csv.gz", "_ES.csv.gz", opt$input.file)
 print(paste0("result will saved in: ", resultf))
 get_ssgsea(opt$input.file, resultf, msigdbf)
-
-
 
 
