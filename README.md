@@ -56,9 +56,9 @@ Run server.py will open the browser with the url http://127.0.0.1:8080/docs, you
 ```bash
 python3 server.py
 ```
-If you are succeed, you will see a response like this.![response](img/img_2.png)
-You can download example file by click "doanload example" to check the data format, and prepare your local data for run this model.but remenber the larget input data should less than 100 samples.
-for more than 100 samples, best way is to run gsva to get enrichment score first:
+If you succeed, you will see a response like this.![response](img/img_2.png)
+You can download example file by clicking "download example" to check the data format, and prepare your local data to run this model. But please note that maximun sample size for input data is 100 and will take a long time to response.
+for more than 100 samples, the best way is to run gsva to get enrichment score first:
 ``` bash
 Rscript ./src/run_gsva.R -i expression_matrix.csv.gz
 
