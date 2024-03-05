@@ -17,6 +17,8 @@ U-CAN CRPS Model is written in the Python3 programming language. We used ResNet5
 -[Setting Enviroment](#Setting-Enviroment)
 - [Run](#run)
 - [Viewing the results](#viewing-the-results)
+- [License](#License)
+- [Contact](#Contact)
 
 ---
 
@@ -64,4 +66,4 @@ The "predictions_only.xlsx" in "predict" dir have eight columns: samples, the pr
 Distributed under the GPL-2.0 License License. See LICENSE for more information.
 # Contact
 Meizhen Wu - wumeizhen@genomics.cn
-if any bugs, can create an issue!
+if any bugs, concat or create an issue!
