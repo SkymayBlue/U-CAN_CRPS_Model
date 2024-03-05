@@ -33,6 +33,7 @@ CLUSTER_NAME = {0: TOTAL_CLUSTER[0], 1: TOTAL_CLUSTER[1], 2: TOTAL_CLUSTER[2], 3
                 4: TOTAL_CLUSTER[5], 5: TOTAL_CLUSTER[4]}
 REVER_CLUSTER_NAME = {0: TOTAL_CLUSTER[0], 1: TOTAL_CLUSTER[1], 2: TOTAL_CLUSTER[2], 3: TOTAL_CLUSTER[3],
                       4: TOTAL_CLUSTER[4], 5: TOTAL_CLUSTER[5]}
+GMTDB="./features/msigdb.v7.4.symbols.gmt.gz"
 
 
 # check result dir exists!
@@ -49,6 +50,31 @@ def makedir(workdir):
         print("create dir %s" % workdir)
         os.makedirs(workdir)
     return workdir
+
+
+def exp2pathByRpy2(exp_df):
+    import rpy2.robjects as ro
+    from rpy2.robjects import r
+    from rpy2.robjects import pandas2ri
+    from rpy2.robjects.conversion import localconverter
+    with localconverter(ro.default_converter + pandas2ri.converter):
+        ro.globalenv['exp_mat'] = pandas2ri.py2rpy(exp_df)
+        ro.globalenv['msigdbf'] = GMTDB
+        gsva_run = r("""set.seed(46);
+                    suppressWarnings(suppressMessages(library(data.table)));
+                    suppressWarnings(suppressMessages(library(GSVA)));
+                    suppressWarnings(suppressMessages(library(GSEABase)));
+                    suppressWarnings(suppressMessages(library(BiocParallel)));
+                    gmt=getGmt(gzfile(msigdbf), geneIdType= SymbolIdentifier(), sep="\t");
+                    geneSets = geneIds(gmt);
+                    filter_gmt = filterGeneSets(geneSets, min.sz=5, max.sz=300)
+                    expmat = as.matrix(exp_mat)
+                    crc_es = gsva(expmat, filter_gmt, mx.diff=TRUE, verbose=TRUE, BPPARAM=SnowParam(TRUE), parallel.sz=8, method="ssgsea")
+                    crc_df = as.data.frame(crc_es)
+                    return(crc_df)""")
+        gsva_res = gsva_run  # pd.DataFrame(gsva_run)
+        # gsva_res.to_csv("../testdata/GSE35896_ssgsea.csv.gz")
+        return gsva_res
 
 
 # if feature not found in data, we add 0
@@ -98,14 +124,18 @@ def load_dataset(ssgseaf, norm):
 
 
 # for load raw data
-def load_dataset_selected(ssgseaf, newf, norm):
-    ssgsea_df = pd.read_csv(ssgseaf, index_col=0).T
+def load_dataset_selected(ssgsea_df_ori, newf, norm):
+    # ssgsea_df = pd.read_csv(ssgseaf, index_col=0).T
+    ssgsea_df = ssgsea_df_ori.T
     top2000_features = []
     if os.path.exists(newf):
         top2000_features = open(newf, "r").read().strip().split("\n")
     else:
-        print("Please check the features !")
-        exit(0)
+        return "Please check the default features is exist in features directory!"
+    # check the selected features and input fetures, if common features less than half, return error
+    unfound_features = [i for i in top2000_features if i not in ssgsea_df.columns.values]
+    if len(unfound_features) >= 1000:
+        return "ERROR: your input data with too less number features! Please check the default features in features directory!"
     selected_ssgsea_df = uniform_features(ssgsea_df, top2000_features)
     if norm == 1:
         normed_ssgsea_df = minmax_data(selected_ssgsea_df)
@@ -151,9 +181,6 @@ def split_dataset(dataset, label, train_data_path="", split=2):
 
 # https://newbedev.com/how-to-perform-feature-selection-with-gridsearchcv-in-sklearn-in-python
 def select_feature(X, label, newf, num_f=2000):
-    print("RFECV with: \n")
-    print(X)
-    print(label)
     rf = RandomForestClassifier(random_state=SEEDS)
     rfecv = RFECV(estimator=rf, cv=StratifiedKFold(5, shuffle=True, random_state=SEEDS), scoring="accuracy",
                   step=200, min_features_to_select=num_f, n_jobs=6)
@@ -175,11 +202,7 @@ def select_feature(X, label, newf, num_f=2000):
 
 
 def select_feature_(X, label, newf, num_f=2000):
-    print("ReliefF with: \n")
-    print(X)
     X1, label1 = df2np(X, label)
-    print(X1)
-    print(label)
     fs = ReliefF(n_features_to_select=num_f, n_neighbors=20, n_jobs=6, verbose=True)
     fs.fit(X1, label)
     feature_df = pd.DataFrame(columns=["features", "score"])
