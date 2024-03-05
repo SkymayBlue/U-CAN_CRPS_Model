@@ -48,6 +48,7 @@ A typical user can install the libraries using the following command:
 ``` bash
 python3 -m pip install -r requirements.txt
 ```
+if you want to run with exoression matrix, you also need install rpy2 and some R packages in `requestment_r.txt`
 
 ---
 
@@ -71,7 +72,7 @@ The "predictions_only.xlsx" in "predict" dir have eight columns: samples, the pr
 
 ---
 # License
-Distributed under the GPL-2.0 License License. See LICENSE for more information.
+Distributed under the GPL-2.0 License License. See `LICENSE` for more information.
 
 ---
 # Contact
