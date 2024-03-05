@@ -57,13 +57,23 @@ Run server.py will open the browser with the url http://127.0.0.1:8080/docs, you
 python3 server.py
 ```
 If you are succeed, you will see a response like this.![response](img/img_2.png)
-You also can download example file by click "doanload example" to prepare your data for
+You can download example file by click "doanload example" to check the data format, and prepare your local data for run this model.but remenber the larget input data should less than 100 samples.
+for more than 100 samples, best way is to run gsva to get enrichment score first:
+``` bash
+Rscript ./src/run_gsva.R -i expression_matrix.csv.gz
+
+```
+
+---
 
 # Viewing the results
 The "predictions_only.xlsx" in "predict" dir have eight columns: samples, the probability and the most likely class.![result](img/img_3.png)
 
+---
 # License
 Distributed under the GPL-2.0 License License. See LICENSE for more information.
+
+---
 # Contact
-Meizhen Wu - wumeizhen@genomics.cn
+Meizhen Wu - wumeizhen@genomics.cn.
 if any bugs, concat or create an issue!
