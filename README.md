@@ -59,7 +59,7 @@ python3 server.py
 ```
 If you succeed, you will see a response like this.![response](img/img_2.png)
 You can download example file by clicking "download example" to check the data format, and prepare your local data to run this model. But please note that maximun size for input data is 200M and this will take the program a long time to response.
-for more than 200M, the best way is to run gsva to get enrichment score first:
+For the input data larger than 200M, the best way is to run gsva and get enrichment score first:
 ``` bash
 Rscript ./src/run_gsva.R -i expression_matrix.csv.gz
 
