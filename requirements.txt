@@ -8,3 +8,4 @@ tensorflow==2.9.1
 tensorflow-addons==0.16.1
 uvicorn==0.18.2
 python-multipart==0.0.5
+rpy2==3.5.15
