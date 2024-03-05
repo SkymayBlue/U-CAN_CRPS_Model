@@ -50,11 +50,18 @@ python3 -m pip install -r requirements.txt
 ---
 
 # Run
-Run main.py will open the browser with the url http://127.0.0.1:8000/, you need to click the button "Try it out" in POST, then you can upload and perform CRPS prediction on the csv file which is in testdata directory, and click "Execute" to test whether your installation is corrected or not. 
+Run server.py will open the browser with the url http://127.0.0.1:8080/docs, you will see the web.![web](img/server_main.png)You can select inpuexpresson matrix or enrichment score matrix calclated with  "GSVA"  by yourself, then you can upload and perform CRPS prediction on the csv file which is in testdata directory, and click "Execute" to test whether your installation is corrected or not. 
 ```bash
-python3 main.py
+python3 server.py
 ```
 If you are succeed, you will see a response like this.![response](img/img_2.png)
+You also can download example file by click "doanload example" to prepare your data for
 
 # Viewing the results
 The "predictions_only.xlsx" in "predict" dir have eight columns: samples, the probability and the most likely class.![result](img/img_3.png)
+
+# License
+Distributed under the GPL-2.0 License License. See LICENSE for more information.
+# Contact
+Meizhen Wu - wumeizhen@genomics.cn
+if any bugs, can create an issue!
