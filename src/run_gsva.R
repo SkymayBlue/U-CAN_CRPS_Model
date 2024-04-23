@@ -10,6 +10,9 @@ get_ssgsea<-function(inputf, resultf, msigdbf){
   exp_mat <- read.csv(rgz, row.names=1, header=TRUE)
   close(rgz)
   print(exp_mat[1:5,1:5])
+  if(max(exp_mat) > 50){
+    exp_mat <- log2(exp_mat + 1)
+  }
   gmt <- getGmt(gzfile(msigdbf), geneIdType= SymbolIdentifier(), sep="\t")
   geneSets <- geneIds(gmt)
   filter_gmt <- filterGeneSets(geneSets, min.sz=5, max.sz=300)
