@@ -2,6 +2,9 @@
 import pandas as pd
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import FileResponse
+# http://fastapi.tiangolo.com/how-to/docs-ui-assets/#include-the-custom-docs-for-static-files
+from fastapi.staticfiles import StaticFiles
+from fastapi.openapi.docs import get_swagger_ui_html
 from starlette.background import BackgroundTask
 import os
 import shutil
@@ -48,10 +51,20 @@ app = FastAPI(title="RESNET50 for CRPS Prediction!",
               description="This web interface allows file uploading for a TensorFlow container running a ResNET50 pre-trained model for CRPS subtype",
               version="1.0.0",
               redoc_url=None,
+              docs_url=None,
               swagger_ui_parameters={'tryItOutEnabled': True, "deepLinking": False},
               openapi_tags=tags_metadata)
 
-
+app.mount("/static", StaticFiles(directory="static"), name="static")
+@app.get("/docs", include_in_schema=False)
+async def custom_swagger_ui_html():
+    return get_swagger_ui_html(
+        openapi_url=app.openapi_url,
+        title=app.title + " - Swagger UI",
+        oauth2_redirect_url=app.swagger_ui_oauth2_redirect_url,
+        swagger_js_url="/static/swagger-ui-bundle.js",
+        swagger_css_url="/static/swagger-ui.css",
+    )
 # home dir
 # @app.get("/")
 # def home_screen():
@@ -157,7 +170,7 @@ def download_es():
 
 app.mount("/downapi", downapi)
 
-# if __name__ == "__main__":
-#     from uvicorn import run
-#     port = int(os.environ.get('PORT', 8080))
-#     run("server:app", host="127.0.0.1", port=port, reload=True)
+if __name__ == "__main__":
+    from uvicorn import run
+    port = int(os.environ.get('PORT', 8080))
+    run("server:app", host="127.0.0.1", port=port, reload=True)
