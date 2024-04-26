@@ -77,4 +77,4 @@ Distributed under the GPL-2.0 License License. See `LICENSE` for more informatio
 ---
 # Contact
 Meizhen Wu - wumeizhen@genomics.cn.
-if any bugs, concat or create an issue!
+if any bugs, create an issue!
