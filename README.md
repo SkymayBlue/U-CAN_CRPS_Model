@@ -64,7 +64,7 @@ For the input data larger than 200M, the best way is to run gsva and get enrichm
 Rscript ./src/run_gsva.R -i expression_matrix.csv.gz
 
 ```
-The Input matrix of this R script should be TPM or logTPM. If the input format is not compressed csv, please feel free to change this R script.
+The Input matrix of this R script should be TPM or logTPM of mRNAs. If the input format is not compressed csv, please feel free to change this R script.
 
 ---
 
